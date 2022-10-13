@@ -3,6 +3,10 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+ const { ContextualIdentityService } = ChromeUtils.import(
+  "resource://gre/modules/ContextualIdentityService.jsm"
+);
+
 function enableRestMode() {
   if (Services.prefs.getBoolPref("floorp.browser.rest.mode", false)) {
     var Tag = document.createElement("style");
@@ -194,8 +198,10 @@ function setCustomURLFavicon(sbar_id) {
     document.getElementById(`select-CustomURL${sbar_id}`).style.listStyleImage = `url(http://www.google.com/s2/favicons?domain=${sbar_url})`;
 
     const wibpanel_usercontext = Services.prefs.getIntPref(`floorp.browser.sidebar2.customurl${sbar_id}.usercontext`, undefined);
-    if(wibpanel_usercontext != 0){
-      document.getElementById(`select-CustomURL${sbar_id}`).style.borderLeft = `solid 2px var(--usercontext-color-${wibpanel_usercontext})`;
+    const container_list = ContextualIdentityService.getPublicIdentities()
+    if(wibpanel_usercontext != 0 && container_list.findIndex(e => e.userContextId === wibpanel_usercontext) != -1){
+      let  container_color = container_list[container_list.findIndex(e => e.userContextId === wibpanel_usercontext)].color
+      document.getElementById(`select-CustomURL${sbar_id}`).style.borderLeft = `solid 2px ${container_color == "toolbar" ? "var(--toolbar-field-color)" : container_color}`;
     }else{
       document.getElementById(`select-CustomURL${sbar_id}`).style.borderLeft = "";
     }
@@ -286,15 +292,7 @@ function removeAttributeSelectedNode(){
 
 function setAllfavicons() {
   for (let sbar_id = 0; sbar_id <= DEFAULT_DYNAMIC_CUSTOMURL_MODES_AMOUNT; sbar_id++) {
-    var sbar_favicon = Services.prefs.getStringPref(`floorp.browser.sidebar2.customurl${sbar_id}`)
-    document.getElementById(`select-CustomURL${sbar_id}`).style.listStyleImage = `url(http://www.google.com/s2/favicons?domain=${sbar_favicon}`;
-
-    var wibpanel_usercontext = Services.prefs.getIntPref(`floorp.browser.sidebar2.customurl${sbar_id}.usercontext`, undefined);
-    if(wibpanel_usercontext != 0){
-      document.getElementById(`select-CustomURL${sbar_id}`).style.borderLeft = `solid 2px var(--usercontext-color-${wibpanel_usercontext})`;
-    }else{
-      document.getElementById(`select-CustomURL${sbar_id}`).style.borderLeft = "";
-    }
+    setCustomURLFavicon(sbar_id);
   }
 }
 
