@@ -98,6 +98,11 @@
             },
             "additionalProperties": { "$ref": "ImageDataOrExtensionURL" }
           },
+          "icons": {
+            "type": "object",
+            "optional": true,
+            "additionalProperties": { "$ref": "ImageDataOrExtensionURL" }
+          },
           "colors": {
             "type": "object",
             "optional": true,
