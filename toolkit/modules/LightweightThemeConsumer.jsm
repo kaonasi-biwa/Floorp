@@ -212,8 +212,8 @@ function LightweightThemeConsumer(aDocument) {
   const { LightweightThemeManager } = ChromeUtils.import(
     "resource://gre/modules/LightweightThemeManager.jsm"
   );
-  this._update(LightweightThemeManager.themeData);
 
+  this._update(LightweightThemeManager.themeData);
   Services.prefs.addObserver("floorp.dualtheme.theme",this.dual_obs.bind(this))
   Services.prefs.addObserver("floorp.enable.dualtheme",this.dual_obs.bind(this))
   Services.prefs.addObserver("extensions.experiments.enabled",this.dual_obs.bind(this))
@@ -579,6 +579,7 @@ if(Services.prefs.getBoolPref("floorp.enable.dualtheme", false)){
       "--lwt-additional-images",
       theme.additionalBackgrounds
     );
+console.log(theme.icons)
     _setProperties(root, active, theme);
 
     if (theme.id != DEFAULT_THEME_ID || useDarkTheme) {

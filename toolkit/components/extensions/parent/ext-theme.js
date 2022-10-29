@@ -18,7 +18,7 @@ const onUpdatedEmitter = new EventEmitter();
 
 // Represents an empty theme for convenience of use
 const emptyTheme = {
-  details: { colors: null, images: null, properties: null },
+  details: { colors: null, images: null, properties: null, icons: null },
 };
 
 let defaultTheme = emptyTheme;
@@ -153,6 +153,10 @@ class Theme {
 
     if (details.properties) {
       this.loadProperties(details.properties, styles);
+    }
+
+    if (details.icons) {
+      this.loadIcons(details.icons, styles);
     }
 
     this.loadMetadata(this.extension, styles);
@@ -290,6 +294,20 @@ class Theme {
           break;
         }
       }
+    }
+  }
+
+loadIcons(icons, styles) {
+    const { baseURI } = this.extension;
+if(styles.icons == undefined) styles.icons = {}
+    for (let icon of Object.keys(icons)) {
+      let val = icons[icon];
+
+      if (!val) {
+        continue;
+      }
+      styles.icons[icon] = baseURI.resolve(val)
+      
     }
   }
 
