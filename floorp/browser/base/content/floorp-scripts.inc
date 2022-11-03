@@ -7,6 +7,7 @@
 
 // This file contains the functions that are used by the floorp browser
 Services.scriptloader.loadSubScript("chrome://browser/content/browser-command.js", this);
+Services.scriptloader.loadSubScript("chrome://browser/content/browser-iconpack.js", this);
 
 
 // This function is called when the floorp browser window is loaded. needs Delay.

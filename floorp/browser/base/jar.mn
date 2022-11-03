@@ -13,4 +13,5 @@ browser.jar:
   content/browser/browser-userChrome.js         (content/browser-userChrome.js)
   content/browser/browser-preferences.js        (content/browser-preferences.js)
   content/browser/browser-command.js            (content/browser-command.js)
+  content/browser/browser-iconpack.js           (content/browser-iconpack.js)
   content/browser/browser-floorp.css            (content/browser-floorp.css)

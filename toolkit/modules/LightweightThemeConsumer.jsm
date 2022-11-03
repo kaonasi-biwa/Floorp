@@ -579,7 +579,11 @@ if(Services.prefs.getBoolPref("floorp.enable.dualtheme", false)){
       "--lwt-additional-images",
       theme.additionalBackgrounds
     );
-console.log(theme.icons)
+    if((theme.icons == undefined || theme.icons == null) && (theme.addonIcons == undefined || theme.addonIcons == null)){
+      Services.obs.notifyObservers({}, "iconpack-update");
+    }else{
+      Services.obs.notifyObservers({"icons":theme.icons,"addonIcons":theme.addonIcons}, "iconpack-update");
+    }
     _setProperties(root, active, theme);
 
     if (theme.id != DEFAULT_THEME_ID || useDarkTheme) {
