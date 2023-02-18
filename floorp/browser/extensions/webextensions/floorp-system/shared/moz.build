@@ -67,10 +67,5 @@ FINAL_TARGET_FILES.features["floorp-system@floorp.ablaze.one"]["gesturefy"] += [
     "gesturefy/gesturefy.js",
 ]
 
-FINAL_TARGET_FILES.features["floorp-system@floorp.ablaze.one"]["gesturefly"] += [
-    "gesturefly/background.js",
-    "gesturefly/gesturefly.js",
-]
-
 with Files("**"):
     BUG_COMPONENT = ("Firefox", "floorp-system")
