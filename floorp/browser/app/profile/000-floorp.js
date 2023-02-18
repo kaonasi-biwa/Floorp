@@ -29,12 +29,12 @@ pref("update.id.floorp", "linux");
 
 // userAgent
 pref("floorp.browser.UserAgent", 0);
+pref("floorp.general.useragent.override", "");
 
 pref("floorp.chrome.theme.mode", -1);
 
 //ブラウザーUIのカスタマイズ設定
 pref("floorp.hide.tabbrowser-tab.enable", false); //水平タブ削除
-pref("floorp.optimized.msbutton.ope", false); //サイドボタン付きマウス操作にブラウザーを最適化
 pref("floorp.optimized.verticaltab", false); //ツリー型垂直タブ等に最適化。8.7.2 からフォーカスした際の動作は別に
 pref("floorp.horizontal.tab.position.shift", false); //水平タブ位置移動
 pref("floorp.Tree-type.verticaltab.optimization", false); //ツリー型タブのフォーカスした際の挙動を変更
@@ -42,6 +42,7 @@ pref("floorp.bookmarks.bar.focus.mode", false);//フォーカスした際にブ�
 pref("floorp.material.effect.enable", false);//マテリアルモードの実装
 pref("floorp.disable.fullscreen.notification", false);//フルスクリーン通知を無効化
 pref("floorp.navbar.bottom", false);
+pref("floorp.tabs.showPinnedTabsTitle", false); //ピン留めされたタブのタイトルを表示
 
 pref("floorp.browser.user.interface", 3);// Floorp 10 系以降のインターフェーステーマ設定
 pref("floorp.browser.tabbar.settings", 0);// タブの設定
@@ -71,6 +72,8 @@ pref("privacy.restrict3rdpartystorage.rollout.enabledByDefault", true);
 pref("browser.newtabpage.activity-stream.improvesearch.handoffToAwesomebar", false);
 //新しいタブの背景の設定
 pref("browser.newtabpage.activity-stream.floorp.background.type", 1);
+pref("browser.newtabpage.activity-stream.floorp.background.images.folder", "");
+pref("browser.newtabpage.activity-stream.floorp.background.images.extensions", "png,jpg,jpeg,webp,gif,svg,tiff,tif,bmp,avif");
 
 pref("floorp.multitab.bottommode", false);
 
@@ -82,9 +85,25 @@ pref("floorp.browser.sidebar.enable", true);// サイドバーを表示
 pref("floorp.browser.sidebar2.page", "");//サイドバーで開いているページ
 
 // url:URL width:幅 userAgent:userAgent usercontext:コンテナタブ
-pref("floorp.browser.sidebar2.data", "{\"data\":{\"1\":{\"url\":\"floorp//bmt\",\"width\":600},\"2\":{\"url\":\"floorp//bookmarks\",\"width\":415},\"3\":{\"url\":\"floorp//history\",\"width\":415},\"4\":{\"url\":\"floorp//downloads\",\"width\":415},\"5\":{\"url\":\"floorp//tst\",\"width\":415},\"w1\":{\"url\":\"https://freasearch.org\"},\"w2\":{\"url\":\"https://translate.google.com\"}},\"index\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"w1\",\"w2\"]}");
+pref("floorp.browser.sidebar2.data", '{"data":{"1":{"url":"floorp//bmt","width":600},"2":{"url":"floorp//bookmarks","width":415},"3":{"url":"floorp//history","width":415},"4":{"url":"floorp//downloads","width":415},"5":{"url":"floorp//tst","width":415},"w1":{"url":"https://freasearch.org"},"w2":{"url":"https://translate.google.com"},"w3":{"url":"https://misskey.io"}},"index":["1","2","3","4","5","w1","w2","w3"]}');
 
 pref("floorp.browser.sidebar2.global.webpanel.width", 400);
+
+pref("floorp.tabsleep.enabled", false);
+
+// システムアドオンのアップデート確認先
+pref("extensions.systemAddon.update.url", "https://floorp-update.ablaze.one/systemAddon/xml/%DISPLAY_VERSION%/%OS%/update.xml");
+
+// 言語設定をシステムに合わせる
+pref("intl.locale.requested", "");
+
+pref("app.feedback.baseURL", "https://support.ablaze.one/");
+
+// 多段タブ
+pref("floorp.enable.multitab", false);
+pref("floorp.browser.tabbar.multirow.max.enabled", true);
+pref("floorp.browser.tabbar.multirow.newtab-inside.enabled", false);
+pref("floorp.browser.tabbar.multirow.max.row", 3);
 
 /*----------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -107,7 +126,6 @@ pref("services.sync.prefs.sync.browser.tabs.warnOnClose", false, locked); //た�
 // 同期を有効にする
 pref("services.sync.prefs.sync.floorp.browser.sidebar.right", true);// サイドバーの右側を表示
 pref("services.sync.prefs.sync.floorp.browser.sidebar2.data", true);// サイドバーのデータ
-pref("services.sync.prefs.sync.floorp.optimized.msbutton.ope", true); //サイドボタン付きマウス操作にブラウザーを最適化
 pref("services.sync.prefs.sync.floorp.optimized.verticaltab", true); //ツリー型垂直タブ等に最適化。8.7.2 からフォーカスした際の動作は別に
 pref("services.sync.prefs.sync.floorp.browser.user.interface", true);// Floorp 10 系以降のインターフェーステーマ設定
 pref("services.sync.prefs.sync.floorp.browser.tabbar.settings", true);// タブの設定
@@ -133,10 +151,9 @@ pref("app.normandy.enabled", true);
 //backdropfilterを既定で有効化します。
 pref("layout.css.backdrop-filter.enabled", true);
 
-//SVG avif jxl 画像ファイルをの互換性向上または、既定で開けるように
+//SVG avif 画像ファイルをの互換性向上または、既定で開けるように
 pref("svg.context-properties.content.enabled", true, locked);
 pref("image.avif.enabled", true, locked);
-pref("image.jxl.enabled", true, locked);
 
 // Add-On のブラックリストをFloorpが参照する際の情報漏洩削減
 pref("extensions.blocklist.url", "https://blocklist.addons.mozilla.org/blocklist/3/%APP_ID%/%APP_VERSION%/");
@@ -221,23 +238,28 @@ pref("browser.startup.page", 3);//自動復元
 pref("browser.tabs.closeWindowWithLastTab", false);//最後のタブを閉じてもブラウザが閉じないように]
 pref("general.config.obscure_value", 0);
 
-pref("floorp.enable.multitab", false);
-pref("floorp.browser.tabbar.multirow.max.row", 3);
-
 //font
-
-#ifdef XP_WIN
-pref("font.name-list.serif.ja", "Noto Sans JP, Yu Mincho, MS PMincho, MS Mincho, Meiryo, Yu Gothic, MS PGothic, MS Gothic");
-pref("font.name-list.sans-serif.ja", "Noto Sans JP, Meiryo, Yu Gothic, MS PGothic, MS Gothic, Yu Mincho, MS PMincho, MS Mincho");
-pref("font.name-list.monospace.ja", "Noto Sans JP, MS Gothic, MS Mincho, Meiryo, Yu Gothic, Yu Mincho, MS PGothic, MS PMincho");
-#endif
-
-// Windows ネイティブ通知を使用する
-pref("alerts.useSystemBackend", true);
+pref("font.blacklist.underline_offset", "FangSong,Gulim,GulimChe,MingLiU,MingLiU-ExtB,MingLiU_HKSCS,MingLiU-HKSCS-ExtB,MS Gothic,MS Mincho,MS PGothic,MS PMincho,MS UI Gothic,PMingLiU,PMingLiU-ExtB,SimHei,SimSun,SimSun-ExtB,Hei,Kai,Apple LiGothic,Apple LiSung,Osaka,Meiryo");
 
 // 多少のパフォーマンス改善
 pref("gfx.canvas.accelerated", true);
 pref("gfx.webrender.all", true);
+
+// https://developer.mozilla.org/docs/Web/API/Navigator/share
+#ifdef XP_WIN
+pref("dom.webshare.enabled", true);
+#endif
+
+// アドオンのバージョン制限のチェックを無効化
+pref("extensions.checkCompatibility.102.8", false);
+pref("extensions.checkCompatibility.102.9", false);
+pref("extensions.checkCompatibility.102.10", false);
+pref("extensions.checkCompatibility.102.11", false);
+pref("extensions.checkCompatibility.102.12", false);
+pref("extensions.checkCompatibility.102.13", false);
+pref("extensions.checkCompatibility.102.14", false);
+pref("extensions.checkCompatibility.102.15", false);
+pref("extensions.checkCompatibility.nightly", false);
 
 /*-----------------------------------------------------------------------------------all.js の設定-----------------------------------------------------------------------------------*/
 

@@ -27,11 +27,20 @@ auto-reboot = If you change any of the settings below, your browser will be rest
 tab-width = Minimum width of tabs
 enable-multitab = 
  .label = Enable multi-row tabs
-multirow-tabs-value = Number of Rows When Multi-row Tabs Are Enabled 
+multirow-tabs-limit = 
+ .label = Enable row limit for multi-row tabs.
+multirow-tabs-newtab = 
+ .label = Always place the Open New Tab button within the column of multi-row tabs
+multirow-tabs-value = Number of rows when multi-row tabs are enabled
+enable-tab-sleep = 
+ .label = Enable Tab Sleep
+tab-sleep-timeout-minutes-value = Time to put tabs to sleep (minutes)
 enable-tab-scroll-change = 
  .label = Switch Tabs by Scrolling
 enable-doble-click-block = 
  .label = Double-click to Close the Tab
+enable-show-pinned-tabs-title =
+ .label = Show the title of pinned tabs
 operation-settings = 
   .label = Browser Operation Settings
 Mouse-side-button = 
@@ -212,6 +221,10 @@ linux-chrome-useragent-mode =
  .label = Spoof Chrome on Linux
 mobile-chrome-useragent-mode =
  .label = Impersonate Moblie
+use-custom-useragent-mode =
+ .label = Use Custom User Agent
+custom-useragent-value =
+  .label = Custom User Agent
 
 ## DMR UI
 download-mgr-UI =
@@ -315,6 +328,24 @@ newtab-background-gradation =
 newtab-background-not-background =
     .label = Disable Background
 
+newtab-background-selected-image =
+    .label = Use Images from a Selected Folder
+
+newtab-background-folder = Selected Folder
+
+newtab-background-folder-reload = 
+  .label = Reload Images
+
+newtab-background-folder-default = 
+  .label = Restore Default
+
+newtab-background-folder-open = 
+  .label = Open Folder
+
+newtab-background-folder-choose = Choose Images Folder
+
+newtab-background-extensions = Images' Extensions (Separated by ",")
+
 ## lepton preferences
 
 about-lepton = Customize { -brand-short-name } with Lepton
@@ -400,6 +431,11 @@ floorp-lepton-enable-tabbar-as-urlbar =
 lepton-sidebar-preferences = Sidebar
 floorp-lepton-enable-overlap-sidebar =
     .label = Show Sidebar Overlap main Viewer
+
+floorp-home-mode-choice-default =
+    .label = Floorp Home (Default)
+floorp-home-prefs-content-header = Floorp Home Content
+floorp-home-prefs-content-description = Choose what content you want on your Floorp Home screen.
 
 ## tool attribute
 ################################################################### browser ###############################################################
@@ -506,6 +542,10 @@ css-menu =
     .label = CSS
     .accesskey = C
 
+css-menubar =
+    .label = CSS
+    .accesskey = C
+
 rebuild-css =
     .label = Rebuild browser CSS files
     .accesskey = R
@@ -531,8 +571,8 @@ test-content-css =
     .label = Test userContent.css
     .accesskey = W
 
-not-found-editor-path = Path to the editor was not found
-set-pref-description = This operation requires a path to the editor. Set "view_source.editor.path" in "about:config"
+not-found-editor-path = Could not find the editor path.
+set-pref-description = Set the path to the editor you want to use.
 rebuild-complete = Rebuild has been completed.
 please-enter-filename = Please enter a file name.
 confirmed-update = Confirmed the update of "{ $leafName }".
@@ -560,35 +600,50 @@ status-bar =
     .label = Status Bar
      .accesskey = S
 
-##################################################################### Gesturefly ###############################################################
+##################################################################### Gesturefy ###############################################################
 
-gf-floorp-open-tree-style-tab-name = [Floorp] Open Tree Style Tab
-gf-floorp-open-tree-style-tab-description = Open Tree Style Tab on Sidebar
+gf-floorp-open-tree-style-tab-name = [Floorp] Open Tree Style Tab Panel
+gf-floorp-open-tree-style-tab-description = Open Tree Style Tab Panel of Sidebar
 
-gf-floorp-open-bookmarks-sidebar-name = [Floorp] Open Bookmarks on Sidebar
-gf-floorp-open-bookmarks-sidebar-description = Open Bookmarks on Sidebar
+gf-floorp-open-bookmarks-sidebar-name = [Floorp] Open Bookmarks Panel of Sidebar
+gf-floorp-open-bookmarks-sidebar-description = Open Bookmarks Panel of Sidebar
 
-gf-floorp-open-history-sidebar-name = [Floorp] Open History on Sidebar
-gf-floorp-open-history-sidebar-description = Open History on Sidebar
+gf-floorp-open-history-sidebar-name = [Floorp] Open History Panel of Sidebar
+gf-floorp-open-history-sidebar-description = Open History Panel of Sidebar
 
-gf-floorp-open-synctabs-sidebar-name = [Floorp] Open Synced Tabs on Sidebar
-gf-floorp-open-synctabs-sidebar-description = Open Synced Tabs on Sidebar
+gf-floorp-open-synctabs-sidebar-name = [Floorp] Open Synced Tabs Panel of Sidebar
+gf-floorp-open-synctabs-sidebar-description = Open Synced Tabs Panel of Sidebar
 
 gf-floorp-close-sidebar-name = [Floorp] Close Sidebar
-gf-floorp-close-sidebar-description = Close Sidebar on Floorp
+gf-floorp-close-sidebar-description = Close Sidebar
 
 
 gf-floorp-open-browser-manager-sidebar-name = [Floorp] Open BMS
-gf-floorp-open-browser-manager-sidebar-description = Open Browser Manager Sidebar on Floorp
+gf-floorp-open-browser-manager-sidebar-description = Open Browser Manager Sidebar
 
 gf-floorp-close-browser-manager-sidebar-name = [Floorp] Close BMS
-gf-floorp-close-browser-manager-sidebar-description = Close Browser Manager Sidebar on Floorp
+gf-floorp-close-browser-manager-sidebar-description = Close Browser Manager Sidebar
+
+gf-floorp-toggle-browser-manager-sidebar-name = [Floorp] Toggle BMS
+gf-floorp-toggle-browser-manager-sidebar-description = Toggle Browser Manager Sidebar
 
 gf-floorp-show-statusbar-name = [Floorp] Show Status Bar
-gf-floorp-show-statusbar-description = Show Status Bar on Floorp
+gf-floorp-show-statusbar-description = Show Status Bar
 
 gf-floorp-hide-statusbar-name = [Floorp] Hide Status Bar
-gf-floorp-hide-statusbar-description = Hide Status Bar on Floorp
+gf-floorp-hide-statusbar-description = Hide Status Bar
 
 gf-floorp-toggle-statusbar-name = [Floorp] Toggle Status Bar
-gf-floorp-toggle-statusbar-description = Show or Hide Status Bar on Floorp
+gf-floorp-toggle-statusbar-description = Show or Hide Status Bar
+
+##################################################################### Floorp System Update Portable Version ###############################################################
+
+update-portable-notification-found-title = Updates found!
+update-portable-notification-found-message = Downloading updates...
+update-portable-notification-ready-title = Ready to update!
+update-portable-notification-ready-message = The next time the browser is launched, the update will begin.
+update-portable-notification-success-title = Update succeeded!
+update-portable-notification-success-message = Update succeeded! Hope you enjoy the new version of Floorp!
+update-portable-notification-failed-title = Update failed.
+update-portable-notification-failed-redirector-message = Update failed. Restarting your browser may solve the problem.
+update-portable-notification-failed-prepare-message = Failed to prepare update.

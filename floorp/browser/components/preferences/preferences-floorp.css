@@ -139,7 +139,7 @@
     }
   }
   
-  #floorplegacy {
+  #fluerialUI {
     display: block;
     margin: 0 auto;
     border: 1px solid var(--in-content-box-border-color);
@@ -601,4 +601,22 @@ min-height:60px;
 --in-content-focus-outline-color: var(--in-content-item-selected-text);
 background-color: var(--in-content-item-selected);
 color: var(--in-content-item-selected-text);
+}
+
+#pictureFolder {
+  -moz-box-flex: 1;
+  margin-block: 4px;
+  margin-inline-start: 0;
+  padding-inline-start: 30px;
+  background-repeat: no-repeat;
+  background-size: 16px;
+  background-position: center left 8px;
+}
+
+#pictureFolder:-moz-locale-dir(rtl) {
+  background-position-x: right 8px;
+}
+
+.pictureFolderDisplay{
+  display: var(--background-folder-display,inherit);
 }

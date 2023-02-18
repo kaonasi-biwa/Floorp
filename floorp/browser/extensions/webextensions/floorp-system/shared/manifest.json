@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "__MSG_extensionName__",
   "description": "Floorp のシステムが含まれています。このアドオンは削除・停止ができません。",
-  "version": "1.0",
+  "version": "1.1",
   "homepage_url": "https://ablaze.one",
   "default_locale": "en",
   "permissions": [
@@ -16,14 +16,14 @@
     "<all_urls>"
   ],
   "content_scripts": [
-      {
-            "matches": [
-                "moz-extension://*/views/options/*"
-            ],
-            "js": [
-                "gesturefly/gesturefly.js"
-            ]
-      }
+    {
+      "matches": [
+          "moz-extension://*/views/options/*"
+      ],
+      "js": [
+          "gesturefy/gesturefy.js"
+      ]
+    }
   ],
   "experiment_apis": {
     "aboutConfigPrefs": {
@@ -55,6 +55,30 @@
           ]
         ]
       }
+    },
+    "decompressZip": {
+      "schema": "API/decompressZip.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "API/decompressZip.js",
+        "paths": [["decompressZip"]]
+      }
+    },
+    "downloadFile": {
+      "schema": "API/downloadFile.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "API/downloadFile.js",
+        "paths": [["downloadFile"]]
+      }
+    },
+    "IOFile": {
+      "schema": "API/IOFile.json",
+      "parent": {
+        "scopes": ["addon_parent"],
+        "script": "API/IOFile.js",
+        "paths": [["IOFile"]]
+      }
     }
   },
   "page_action": {
@@ -67,9 +91,10 @@
   },
   "background": {
     "scripts": [
-      "gesturefly/background.js",
+      "gesturefy/background.js",
       "webcompat.js",
       "update.js",
+      "portable-update.js",
       "download-notification.js"
     ]
   },
